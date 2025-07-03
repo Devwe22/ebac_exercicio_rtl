@@ -1,20 +1,19 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import styles from './Post.module.css';
 
-import './main.css';
+import PostComments from '../PostComments';
+import { ReactNode } from 'react';
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+type Props = {
+    children: ReactNode;
+    imageUrl: string;
+}
+
+const Post = ({ children, imageUrl }: Props) => (
+    <div className={styles.post}>
+        <img className={styles['post-image']} src={imageUrl} />
+        <p className={styles['post-text']}> {children} </p>
+        <PostComments />
+    </div>
 );
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+export default Post;
